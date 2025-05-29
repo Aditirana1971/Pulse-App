@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pulse – Daily Check-In</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>💓 Pulse</h1>
+        <p>Your mood-based workout motivator</p>
+
+        {% if submitted %}
+            <h2>You're feeling <em>"{{ mood }}"</em> today.</h2>
+            <p>Recommended workout:</p>
+            <div class="workout-box">{{ workout }}</div>
+            <a href="/">⬅️ Check in again</a>
+        {% else %}
+            <form method="POST">
+                <label for="mood">How are you feeling today?</label>
+                <select name="mood" id="mood" required>
+                    <option value="" disabled selected>Select your mood</option>
+                    <option value="energized">💪 Energized</option>
+                    <option value="okay">🙂 Okay</option>
+                    <option value="meh">😐 Meh</option>
+                    <option value="tired">😴 Tired</option>
+                </select>
+                <br><br>
+                <button type="submit">Submit</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
